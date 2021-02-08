@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+<script>
+//Function for clearing text
+function clearText()
+{
+    document.getElementById("stage").innerHTML = "";
+	document.getElementById("wrccar").innerHTML = "";
+	document.getElementById("wrctwocar").innerHTML = "";
+	document.getElementById("wrcthreecar").innerHTML = "";
+	document.getElementById("legendscar").innerHTML = "";
+	document.getElementById("bonuscar").innerHTML = "";
+}
+</script>
+<title>WRC 9 Random Stage & Car Selector</title>
+<link rel="stylesheet" type="text/css" href="Stylesheet.css">
+</head>
+
+<div id="content">
+
+<h2>WRC 9 Random Stage & Car Selector</h2>
+
+<p id="stage"></p> <p id="wrccar"><p id="wrctwocar"><p id="wrcthreecar"><p id="legendscar"><p id="bonuscar"></p>
+
+<button onclick="RandomStage()">Random Stage</button> <button onclick="RandomWRCCar()">Random WRC Car</button> <button onclick="RandomWRCTwoCar()">Random WRC2 Car</button> <button onclick="RandomWRCThreeCar()">Random WRC3 Car</button> <button onclick="RandomLegendsCar()">Random Legends Car</button> <button onclick="RandomBonusCar()">Random Bonus Car</button> <button onclick="clearText()">Reset</button>
+
+</div>
+
+<script>
+//Array of Stage names
+var stages = ["Monte Carlo - Agnieres-en-Devoluy", "Monte Carlo - Agnieres-en-Devoluy (reverse)", "Monte Carlo - Luceram", "Monte Carlo - Luceram (reverse)", "Monte Carlo  - Col de Braus", "Monte Carlo - Col de Braus (reverse)", "Monte Carlo - La Bollene-Vesuby", "Monte Carlo - La Bollene-Vesuby (reverse)", "Sweden - Torsby", "Sweden - Torsby (reverse)", "Sweden - Vargasen", "Sweden - Vargasen (reverse)", "Sweden - Knon", "Sweden - Knon (reverse)", "Sweden - Karlstad", "Argentina - El Condor", "Argentina - El Condor (reverse)", "Argentina - Cuchilla Nevada", "Argentina - Cuchilla Nevada (reverse)", "Argentina - Cantera", "Argentina - Cantera (reverse)", "Argentina - Parque Tematico", "Portugal - Fafe", "Portugal - Fafe (reverse)", "Portugal - Viana do Castelo", "Portugal - Viana do Castelo (reverse)", "Portugal - Amarante", "Portugal - Amarante (reverse)", "Portugal - Arganil", "Portugal - Arganil (reverse)", "Portugal - Felgueiras", "Portugal - Felgueiras (reverse)", "Portugal - Cabeceiras de Basto", "Portugal - Cabeceiras de Basto (reverse)", "Portugal - Lousada", "Sardina - Baranta", "Sardina - Baranta (reverse)", "Sardina - Lerno", "Sardina - Lerno (reverse)", "Sardina - Monti di Ala", "Sardina - Monti di Ala (reverse)", "Sardina - Ittiri Arena", "Kenya - Ngema", "Kenya - Ngema (reverse)", "Kenya - Seyabei", "Kenya - Seyabei (reverse)", "Kenya - Ntulele", "Kenya - Ntulele (reverse)", "Kenya - Kasarani", "Finland - Ouninpohja", "Finland - Ouninpohja (reverse)", "Finland - Horkka", "Finland - Horkka (reverse)", "Finland - Paijala", "Finland - Paijala (reverse)", "Finland - Arvaja", "Finland - Arvaja (reverse)", "Finland - Pihlajakoski", "Finland - Pihlajakoski (reverse)", "Finland - Laukka", "Finland - Laukka (reverse)", "Finland - Harju", "New Zealand - Te Hutewai", "New Zealand - Te Hutewai (reverse)", "New Zealand - Batley", "New Zealand - Batley (reverse)", "New Zealand - Brooks", "New Zealand - Brooks (reverse)", "New Zealand - Te Akau South", "New Zealand - Te Akau South (reverse)", "Turkey - Datca", "Turkey - Datca (reverse)", "Turkey - Cicekli", "Turkey - Cicekli (reverse)", "Turkey - Yesilbelde", "Turkey - Yesilbelde (reverse)", "Turkey - Marmaris", "Germany - Moselland", "Germany - Moselland (reverse)", "Germany - Freisen", "Germany - Freisen (reverse)", "Germany - Mittelmosel", "Germany - Mittelmosel (reverse)", "Germany - Arena Panzerplatte", "Wales - Hafren", "Wales - Hafren (reverse)", "Wales - Great Orme", "Wales - Great Orme (reverse)", "Wales - Brenig", "Wales - Brenig (reverse)", "Wales - Dyfi", "Wales - Dyfi (reverse)", "Japan - Okazaki", "Japan - Okazaki (reverse)", "Japan - Nagakute", "Japan - Nagakute (reverse)", "Japan - Shinshiro", "Japan - Shinshiro (reverse)", "Japan - Shitara", "Japan - Shitara (reverse)", "Spain - Barcelona Super Special Stage"];
+
+
+//Function for generating stage name
+function RandomStage() {
+var i, j, k;
+  for (i = stages.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = stages[i]
+    stages[i] = stages[j]
+    stages[j] = k
+  }
+document.getElementById("stage").innerHTML = stages[0];
+}
+
+//Array of WRC Category Car names
+var wrccars = ["Ford Fiesta WRC", "Toyota Yaris WRC", "Hyundai i20 WRC"];
+
+//Function for selecting random WRC car name
+function RandomWRCCar() {
+var i, j, k;
+  for (i = wrccars.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = wrccars[i]
+    wrccars[i] = wrccars[j]
+    wrccars[j] = k
+  }
+document.getElementById("wrccar").innerHTML = wrccars[0];
+}
+
+//Array of WRC2 Category car names
+var wrctwocars = ["Hyundai i20 R5", "Citroen C3 R5", "Ford Fiesta R5", "Skoda Fabia R5"];
+
+//Function for selecting random WRC2 car name
+function RandomWRCTwoCar() {
+var i, j, k;
+  for (i = wrctwocars.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = wrctwocars[i]
+    wrctwocars[i] = wrctwocars[j]
+    wrctwocars[j] = k
+  }
+document.getElementById("wrctwocar").innerHTML = wrctwocars[0];
+}
+
+//Array of WRC3 Category car names
+var wrcthreecars = ["Hyundai i20 R5", "Citroen C3 R5", "Skoda Fabia R5", "Volkswagen Polo R5"];
+
+//Function for selecting random WRC3 car name
+function RandomWRCThreeCar() {
+var i, j, k;
+  for (i = wrcthreecars.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = wrcthreecars[i]
+    wrcthreecars[i] = wrcthreecars[j]
+    wrcthreecars[j] = k
+  }
+document.getElementById("wrcthreecar").innerHTML = wrcthreecars[0];
+}
+
+//Array of Legend Category car names
+var legendscars = ["Lancia Fulvia HF", "Alpine A110", "Lancia Stratos", "Ford Escort", "Lancia 037", "Lancia Delta HK Integrate Evoluzione", "Citroen Xsara WRC 2005", "Ford Focus RS 2007", "Volkswagen Polo R WRC"];
+
+//Function for selecting random Legends car name
+function RandomLegendsCar() {
+var i, j, k;
+  for (i = legendscars.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = legendscars[i]
+    legendscars[i] = legendscars[j]
+    legendscars[j] = k
+  }
+document.getElementById("legendscar").innerHTML = legendscars[0];
+}
+
+//Array of Bonus Category car names
+var bonuscars = ["Citroen C3 WRC", "Porsche 911 GT3 RS R-GT", "Proton Iriz R5", "Audi Quattro A2 1984", "Toyota Corolla 1999", "Toyota GR Yaris WRC Concept"];
+
+//Function for selecting random Bonus car name
+function RandomBonusCar() {
+var i, j, k;
+  for (i = bonuscars.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = bonuscars[i]
+    bonuscars[i] = bonuscars[j]
+    bonuscars[j] = k
+  }
+document.getElementById("bonuscar").innerHTML = bonuscars[0];
+}
+</script>
+
+</body>
+</html>
+
