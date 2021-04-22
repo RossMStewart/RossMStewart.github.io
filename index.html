@@ -9,10 +9,6 @@ function clearText()
 {
     document.getElementById("stage").innerHTML = "";
 	document.getElementById("wrccar").innerHTML = "";
-	document.getElementById("wrctwocar").innerHTML = "";
-	document.getElementById("wrcthreecar").innerHTML = "";
-	document.getElementById("legendscar").innerHTML = "";
-	document.getElementById("bonuscar").innerHTML = "";
 }
 </script>
 <title>WRC 9 Random Stage & Car Selector</title>
@@ -23,9 +19,9 @@ function clearText()
 
 <h2>WRC 9 Random Stage & Car Selector</h2>
 
-<p id="stage"></p> <p id="wrccar"><p id="wrctwocar"><p id="wrcthreecar"><p id="legendscar"><p id="bonuscar"></p>
+<p id="stage"></p> <p id="wrccar"></p>
 
-<button onclick="RandomStage()">Random Stage</button> <button onclick="RandomWRCCar()">Random WRC Car</button> <button onclick="RandomWRCTwoCar()">Random WRC2 Car</button> <button onclick="RandomWRCThreeCar()">Random WRC3 Car</button> <button onclick="RandomLegendsCar()">Random Legends Car</button> <button onclick="RandomBonusCar()">Random Bonus Car</button> <button onclick="clearText()">Reset</button>
+<button onclick="RandomStage()">Random Stage</button> <button onclick="RandomWRCCar()">Random WRC Car</button> <button onclick="clearText()">Reset</button>
 
 </div>
 
@@ -61,65 +57,6 @@ var i, j, k;
 document.getElementById("wrccar").innerHTML = wrccars[0];
 }
 
-//Array of WRC2 Category car names
-var wrctwocars = ["Hyundai i20 R5", "Citroen C3 R5", "Ford Fiesta R5", "Skoda Fabia R5"];
-
-//Function for selecting random WRC2 car name
-function RandomWRCTwoCar() {
-var i, j, k;
-  for (i = wrctwocars.length -1; i > 0; i--) {
-    j = Math.floor(Math.random() * i)
-    k = wrctwocars[i]
-    wrctwocars[i] = wrctwocars[j]
-    wrctwocars[j] = k
-  }
-document.getElementById("wrctwocar").innerHTML = wrctwocars[0];
-}
-
-//Array of WRC3 Category car names
-var wrcthreecars = ["Hyundai i20 R5", "Citroen C3 R5", "Skoda Fabia R5", "Volkswagen Polo R5"];
-
-//Function for selecting random WRC3 car name
-function RandomWRCThreeCar() {
-var i, j, k;
-  for (i = wrcthreecars.length -1; i > 0; i--) {
-    j = Math.floor(Math.random() * i)
-    k = wrcthreecars[i]
-    wrcthreecars[i] = wrcthreecars[j]
-    wrcthreecars[j] = k
-  }
-document.getElementById("wrcthreecar").innerHTML = wrcthreecars[0];
-}
-
-//Array of Legend Category car names
-var legendscars = ["Lancia Fulvia HF", "Alpine A110", "Lancia Stratos", "Ford Escort", "Lancia 037", "Lancia Delta HK Integrate Evoluzione", "Citroen Xsara WRC 2005", "Ford Focus RS 2007", "Volkswagen Polo R WRC"];
-
-//Function for selecting random Legends car name
-function RandomLegendsCar() {
-var i, j, k;
-  for (i = legendscars.length -1; i > 0; i--) {
-    j = Math.floor(Math.random() * i)
-    k = legendscars[i]
-    legendscars[i] = legendscars[j]
-    legendscars[j] = k
-  }
-document.getElementById("legendscar").innerHTML = legendscars[0];
-}
-
-//Array of Bonus Category car names
-var bonuscars = ["Citroen C3 WRC", "Porsche 911 GT3 RS R-GT", "Proton Iriz R5", "Audi Quattro A2 1984", "Toyota Corolla 1999", "Toyota GR Yaris WRC Concept"];
-
-//Function for selecting random Bonus car name
-function RandomBonusCar() {
-var i, j, k;
-  for (i = bonuscars.length -1; i > 0; i--) {
-    j = Math.floor(Math.random() * i)
-    k = bonuscars[i]
-    bonuscars[i] = bonuscars[j]
-    bonuscars[j] = k
-  }
-document.getElementById("bonuscar").innerHTML = bonuscars[0];
-}
 </script>
 
 </body>
