@@ -52,3 +52,10 @@ input {
     font-size: 18px;
     cursor: pointer;
 }
+
+.colon {
+    display: flex;
+    align-items: center;  /* Vertically centers the colon with respect to the input boxes */
+    font-weight: bold;
+    margin: 0 5px;  /* Adds some space on both sides of the colon for better separation */
+}
