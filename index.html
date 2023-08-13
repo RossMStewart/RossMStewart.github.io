@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sim Racing Fuel Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="centered content">
+
+<h1>Sim Racing Fuel Calculator</h1>
+
+<table>
+  <tr>
+    <td>Race Length (minutes):</td>
+    <td><input type="number" id="racelength" min="1" /></td>
+  </tr>
+  <tr>
+    <td>Lap Time:</td>
+    <td>
+      <input type="number" id="laptimeMM" placeholder="MM" min="0" style="width: 40px;" />:
+      <input type="number" id="laptimeSS" placeholder="SS" min="0" max="59" style="width: 40px;" />:
+      <input type="number" id="laptimeMS" placeholder="MS" min="0" max="999" style="width: 50px;" />
+    </td>
+  </tr>
+  <tr>
+    <td>Fuel Per Lap (litres):</td>
+    <td><input type="number" id="fuelperlap" min="0" step="0.1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2"><button onclick="calculate()">Calculate</button></td>
+  </tr>
+  <tr>
+    <td>Total Laps:</td>
+    <td id="totallaps"></td>
+  </tr>
+  <tr>
+    <td>Total Fuel (Litres):</td>
+    <td id="totalfuel"></td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+function calculate() {
+  let racelength = document.getElementById("racelength").value;
+  let laptimeMM = document.getElementById("laptimeMM").value;
+  let laptimeSS = document.getElementById("laptimeSS").value;
+  let laptimeMS = document.getElementById("laptimeMS").value;
+  let fuelperlap = document.getElementById("fuelperlap").value;
+
+  if (isNaN(racelength) || racelength <= 0) {
+    alert("Please enter a valid race length.");
+    return;
+  }
+  if (isNaN(fuelperlap) || fuelperlap <= 0) {
+    alert("Please enter a valid fuel per lap.");
+    return;
+  }
+
+  if ([laptimeMM, laptimeSS, laptimeMS].some(val => isNaN(val) || val === "")) {
+    alert("Please enter lap time in MM:SS:MS format.");
+    return;
+  }
+
+  let laptimeInSeconds = parseInt(laptimeMM) * 60 + parseInt(laptimeSS) + parseInt(laptimeMS) / 1000;
+
+  let totallaps = racelength * 60 / laptimeInSeconds;
+  let totalfuel = totallaps * fuelperlap;
+
+  document.getElementById("totallaps").innerHTML = Math.round(totallaps);
+  document.getElementById("totalfuel").innerHTML = totalfuel.toFixed(2);
+}
+</script>
+
+</body>
+</html>
