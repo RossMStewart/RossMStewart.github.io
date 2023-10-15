@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sim Racing Fuel Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Optimize for mobile screens -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="centered-content">
+
+<h1>Sim Racing Fuel Calculator</h1>
+
+<table>
+  <tr>
+    <td>Race Length (minutes):</td>
+    <td><input type="number" id="racelength" min="1" class="mobile-input"/></td>
+  </tr>
+  <tr>
+    <td>Lap Time:</td>
+     <td class="input-group">
+     <input type="number" id="laptimeMM" placeholder="Minutes" min="0" class="mobile-input time-input"/>
+     <span class="colon">:</span>
+     <input type="number" id="laptimeSS" placeholder="Seconds" min="0" max="59" class="mobile-input time-input"/>
+     <span class="colon">:</span>
+     <input type="number" id="laptimeMS" placeholder="Milliseconds" min="0" max="999" class="mobile-input time-input"/>
+     </td>
+  </tr>
+  <tr>
+    <td>Fuel Per Lap:</td>
+    <td><input type="number" id="fuelperlap" min="0" step="0.1" class="mobile-input"/></td>
+  </tr>
+  <tr>
+    <td colspan="2"><button onclick="calculate()" class="mobile-button">Calculate</button></td>
+  </tr>
+  <tr>
+    <td>Total Laps:</td>
+    <td id="totallaps"></td>
+  </tr>
+    </tr>	
+    <td>Minimum Fuel:</td>
+    <td id="minfuel"></td>
+  </tr>
+  <tr>
+    <td>Recommended Fuel:</td>
+	<td id="recommendedfuel"></td>
+  </tr>
+  <tr>
+    <td>Formation Lap Fuel:</td>
+	<td id="formationlap"></td>
+ 
+</table>
+
+</div>
+
+<script>
+function calculate() {
+  let racelength = parseFloat(document.getElementById("racelength").value);
+  let laptimeMM = parseInt(document.getElementById("laptimeMM").value) || 0; // Default to 0 if not provided
+  let laptimeSS = parseInt(document.getElementById("laptimeSS").value) || 0; // Default to 0 if not provided
+  let laptimeMS = parseInt(document.getElementById("laptimeMS").value) || 0; // Default to 0 if not provided
+  let fuelperlap = parseFloat(document.getElementById("fuelperlap").value);
+
+  if (isNaN(racelength) || racelength <= 0) {
+    alert("Please enter a valid race length.");
+    return;
+  }
+  if (isNaN(fuelperlap) || fuelperlap <= 0) {
+    alert("Please enter a valid fuel per lap.");
+    return;
+  }
+
+  if ([laptimeMM, laptimeSS, laptimeMS].some(val => isNaN(val))) {
+    alert("Please enter a valid lap time in MM:SS:MS format.");
+    return;
+  }
+
+  let laptimeInSeconds = (laptimeMM * 60) + laptimeSS + (laptimeMS / 1000);
+  
+  //Each value is rounded up to the nearest whole number
+  let totallaps = Math.ceil(racelength * 60 / laptimeInSeconds);
+  let minfuel = Math.ceil(totallaps * fuelperlap);
+  let recommendedfuel = Math.ceil(minfuel + fuelperlap);
+  let formationlap = Math.ceil(minfuel + (fuelperlap * 2));
+
+  document.getElementById("totallaps").innerHTML = totallaps;
+  document.getElementById("minfuel").innerHTML = minfuel;
+  document.getElementById("recommendedfuel").innerHTML = recommendedfuel;
+  document.getElementById("formationlap").innerHTML = formationlap;
+  
+  console.log("fuelperlap:", fuelperlap);
+  console.log("totallaps:", totallaps);
+  console.log("minfuel:", minfuel);
+  console.log("recommendedfuel:", recommendedfuel);
+  console.log("formationlap:", formationlap);
+}
+
+</script>
+
+</body>
+</html>
