@@ -179,13 +179,13 @@ function calculatelap() {
   let laptimeMM = parseInt(document.getElementById("laprace_laptimeMM").value) || 0; // Default to 0 if not provided
   let laptimeSS = parseInt(document.getElementById("laprace_laptimeSS").value) || 0; // Default to 0 if not provided
   let laptimeMS = parseInt(document.getElementById("laprace_laptimeMS").value) || 0; // Default to 0 if not provided
-  let fuelperlap = parseFloat(document.getElementById("laprace_fuelperlap").value);
+  let laprace_fuelperlap = parseFloat(document.getElementById("laprace_fuelperlap").value);
 
   if (isNaN(lapracelength) || lapracelength <= 0) {
     alert("Please enter a valid race length.");
     return;
   }
-  if (isNaN(fuelperlap) || fuelperlap <= 0) {
+  if (isNaN(laprace_fuelperlap) || laprace_fuelperlap <= 0) {
     alert("Please enter a valid fuel per lap.");
     return;
   }
@@ -209,16 +209,16 @@ function calculatelap() {
   //Each value is rounded up to the nearest whole number
   let totaltime = `${hours}h ${minutes}m ${seconds.toFixed(2)}s`;
   let totallaps = lapracelength;
-  let laprace_minfuel = Math.ceil(totallaps * fuelperlap);
-  let laprace_recommendedfuel = Math.ceil(laprace_minfuel + fuelperlap);
-  let laprace_formationlap = Math.ceil(laprace_minfuel + (fuelperlap * 2));
+  let laprace_minfuel = Math.ceil(totallaps * laprace_fuelperlap);
+  let laprace_recommendedfuel = Math.ceil(laprace_minfuel + laprace_fuelperlap);
+  let laprace_formationlap = Math.ceil(laprace_minfuel + (laprace_fuelperlap * 2));
 
   document.getElementById("totaltime").innerHTML = totaltime;
   document.getElementById("laprace_minfuel").innerHTML = laprace_minfuel;
   document.getElementById("laprace_recommendedfuel").innerHTML = laprace_recommendedfuel;
   document.getElementById("laprace_formationlap").innerHTML = laprace_formationlap;
   
-  console.log("fuelperlap:", fuelperlap);
+  console.log("laprace_fuelperlap:", laprace_fuelperlap);
   console.log("totaltime:", totaltime);
   console.log("laprace_minfuel:", laprace_minfuel);
   console.log("laprace_recommendedfuel:", laprace_recommendedfuel);
