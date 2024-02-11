@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0072b5;
+    background-color:royalblue;
 }
 
 h1 {
@@ -47,16 +47,28 @@ h2 {
 }
 
 .user-output {
-	color: #fff;
-	font-weight: bold;
+    color: #fff;
+    background-color: #4d4d4d;
+    font-weight: bold;
     padding: 8px;
     margin: auto;
-    width: auto; 
+    width: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.user-output th {
+    width: auto;
+    padding: 8px;
+    border: 3px solid #fff;
+    border-bottom-style: none;
 }
 
 .user-output td {
-    width: auto; /* Each cell occupies half the table's width */
+    width: auto;
     padding: 8px;
+    border: 3px solid #fff;
+    border-top-style: none;
 }
 
 input {
@@ -124,21 +136,38 @@ input {
 
 
 @media screen and (max-width: 600px) {
-    .centered-paragraph, .user-input, .user-output {
+    .centered-paragraph, .user-input {
         width: 95%; /* Adjust for very small screens */
+        font-size: 0.85em;
+    }
+    body {
+        padding-bottom: 20px;
+    }
+    .user-output {
+        width: 90%; /* Adjust width for smaller screens */
+        font-size: 0.8em; /* Adjust font size for smaller screens */
+        font-weight: bold;
+        margin: auto;
+        padding-bottom: 10px;
+    }
+    .user-output th,
+    .user-output td {
+        padding: 6px; /* Adjust padding for smaller screens */
     }
     h1, h2 {
         font-size: 1.3em; /* Adjust font size for smaller screens */
     }
+
     .mobile-input {
         padding: 10px 14px; /* Increase padding for touch accessibility */
-		margin-bottom: 12px; 
+        margin-bottom: 12px;
     }
-	.mobile-button {
+
+    .mobile-button {
         font-size: 0.9em; /* Slightly smaller font for very small screens */
         padding: 10px 15px; /* Adjust padding for smaller screens */
     }
-}
+
     .time-input {
         margin-right: 2px; /* Adjust spacing */
     }

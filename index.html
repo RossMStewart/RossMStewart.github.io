@@ -18,23 +18,18 @@
 
 <br>
 
-<p class="centered-paragraph">Select which type of race you need to calculate fuel for (Timed Race or Lap Race), enter the required information below and click the Calculate button to get the required amount of fuel for your race.</p>
-
-<br>
-<br>
-
 <!-- Toggle buttons to switch between Timed and Lap race input -->
 <button id="TimedButton" class="mobile-button">Timed</button>
 <button id="LapsButton" class="mobile-button">Laps</button>
 
-<br><br>
+<br>
 
  <!-- Input fields for Timed Race -->
 <div id="timedrace" style="display: block;">
 
 <h2>Timed Race</h2>
 
-<p class="centered-paragraph">Please enter the Race Length in minutes e.g. 20, 60, 120.</p>
+<p class="centered-paragraph">Please enter the Race Length in minutes.</p>
 
 <br>
 
@@ -63,29 +58,26 @@
   </tr>
 </table>
 
-<br><br>
     <!-- Calculate button for Timed Race -->
     <button onclick="calculatetimed()" class="mobile-button">Calculate</button>
-	
+
 <br><br>
 
 <!-- Display Results for Timed Race -->
 <table class="user-output"> 
+    <!-- Table Headings -->
   <tr>
-    <td>Total Laps:</td>
+    <th>Total Laps</th>
+    <th>Minimum Fuel</th>
+    <th>Recommended Fuel</th>
+    <th>Formation Lap Fuel</th>
+  </tr>
+    <!-- Table Cells -->
+   <tr>
     <td id="totallaps"></td>
-  </tr>	
-  <tr>
-    <td>Minimum Fuel:</td>
     <td id="minfuel"></td>
-  </tr>
-  <tr>
-    <td>Recommended Fuel:</td>
-	<td id="recommendedfuel"></td>
-  </tr>
-  <tr>
-    <td>Formation Lap Fuel:</td>
-	<td id="formationlap"></td>
+    <td id="recommendedfuel"></td>
+    <td id="formationlap"></td>
   </tr>
 </table>
 
@@ -125,28 +117,23 @@
   </tr>
 </table>
 
-<br><br>
     <!-- Calculate button for Lap Race -->
     <button onclick="calculatelap()" class="mobile-button">Calculate</button>
-	
-<br><br>
 
+<br><br>
+	
  <!-- Display Results for Lap Race -->
 <table class="user-output"> 
   <tr>
-    <td>Total Time:</td>
-    <td id="totaltime"></td>
-  </tr>	
+    <th>Total Time</th>
+    <th>Minimum Fuel</th>
+    <th>Recommended Fuel</th>
+    <th>Formation Lap Fuel</th>
+  </tr>
   <tr>
-    <td>Minimum Fuel:</td>
+    <td id="totaltime"></td>	
     <td id="laprace_minfuel"></td>
-  </tr>
-  <tr>
-    <td>Recommended Fuel:</td>
 	<td id="laprace_recommendedfuel"></td>
-  </tr>
-  <tr>
-    <td>Formation Lap Fuel:</td>
 	<td id="laprace_formationlap"></td>
   </tr>
 </table>
@@ -183,8 +170,8 @@ document.getElementById("laprace").style.display = "none";
 });
 
 document.getElementById("LapsButton").addEventListener("click", function() {
-  document.getElementById("laprace").style.display = "block";
-  document.getElementById("timedrace").style.display = "none";
+document.getElementById("laprace").style.display = "block";
+document.getElementById("timedrace").style.display = "none";
 });
 
 // Function to calculate fuel required for timed races.
