@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sim Racing Fuel Calculator</title>
+  <!-- Setting viewport for responsive design -->
+  <!-- Optimize for mobile screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+   <!-- Linking external stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="centered-content">
+
+<h1>Sim Racing Fuel Calculator</h1>
+
+<p class="centered-paragraph">A quick and easy to use Fuel Calculator that can be used for any sim racing title!</p>
+
+<br>
+
+<!-- Toggle buttons to switch between Timed and Lap race input -->
+<button id="TimedButton" class="mobile-button">Timed</button>
+<button id="LapsButton" class="mobile-button">Laps</button>
+
+<br>
+
+ <!-- Input fields for Timed Race -->
+<div id="timedrace" style="display: block;">
+
+<h2>Timed Race</h2>
+
+<p class="centered-paragraph">Please enter the Race Length in minutes.</p>
+
+<br>
+
+<p class="centered-paragraph">Fuel Per Lap can entered as Litres or Gallons.</p>
+
+<table class="user-input">
+  <tr>
+   <td>Race Length:</td>
+    <td class="input-group">
+    <input type="number" id="timedracelengthhour" placeholder="Hours" min="1" class="mobile-input time-input"/>
+    <span class="colon">:</span>
+    <input type="number" id="timedracelengthmin" placeholder="Minutes" min="1" class="mobile-input time-input"/>
+   </td>
+  </tr>
+  <tr>
+    <td>Lap Time:</td>
+	<!-- Input fields for minutes, seconds, milliseconds of lap time -->
+     <td class="input-group">
+     <input type="number" id="laptimeMM" placeholder="0" min="0" class="mobile-input time-input"/>
+     <span class="colon">:</span>
+     <input type="number" id="laptimeSS" placeholder="00" min="0" max="59" class="mobile-input time-input"/>
+     <span class="colon">.</span>
+     <input type="number" id="laptimeMS" placeholder="000" min="0" max="999" class="mobile-input time-input"/>
+     </td>
+  </tr>
+  <tr>
+    <td>Fuel Per Lap:</td>
+	<!-- Input field for Fuel Per Lap -->
+    <td><input type="number" id="fuelperlap" min="0" step="0.1" class="mobile-input"/></td>
+  </tr>
+</table>
+
+    <!-- Calculate button for Timed Race -->
+    <button onclick="calculatetimed()" class="mobile-button">Calculate</button>
+
+<br><br>
+
+<!-- Display Results for Timed Race -->
+<table class="user-output"> 
+    <!-- Table Headings -->
+  <tr>
+    <th>Total Laps</th>
+    <th>Minimum Fuel</th>
+    <th>Recommended Fuel</th>
+    <th>Formation Lap Fuel</th>
+  </tr>
+    <!-- Table Cells -->
+   <tr>
+    <td id="totallaps"></td>
+    <td id="minfuel"></td>
+    <td id="recommendedfuel"></td>
+    <td id="formationlap"></td>
+  </tr>
+</table>
+
+</div>
+
+<!-- Input fields for Lap Race -->
+<div id="laprace" style="display: none;">
+
+<h2>Lap Race</h2>
+
+<p class="centered-paragraph">Please enter the number of laps for the Race Length.</p>
+
+<br>
+
+<p class="centered-paragraph">Fuel Per Lap can entered as Litres or Gallons.</p>
+
+<table class="user-input">
+  <tr>
+    <td>Race Length:</td>
+    <td><input type="number" id="lapracelength" placeholder="Laps" min="1" class="mobile-input"/></td>
+  </tr>
+  <tr>
+    <td>Lap Time:</td>
+	<!-- Input fields for minutes, seconds, milliseconds of lap time -->
+     <td class="input-group">
+     <input type="number" id="laprace_laptimeMM" placeholder="0" min="0" class="mobile-input time-input"/>
+     <span class="colon">:</span>
+     <input type="number" id="laprace_laptimeSS" placeholder="00" min="0" max="59" class="mobile-input time-input"/>
+     <span class="colon">.</span>
+     <input type="number" id="laprace_laptimeMS" placeholder="000" min="0" max="999" class="mobile-input time-input"/>
+     </td>
+  </tr>
+  <tr>
+    <td>Fuel Per Lap:</td>
+	<!-- Input field for Fuel Per Lap -->
+    <td><input type="number" id="laprace_fuelperlap" min="0" step="0.1" class="mobile-input"/></td>
+  </tr>
+</table>
+
+    <!-- Calculate button for Lap Race -->
+    <button onclick="calculatelap()" class="mobile-button">Calculate</button>
+
+<br><br>
+	
+ <!-- Display Results for Lap Race -->
+<table class="user-output"> 
+  <tr>
+    <th>Total Time</th>
+    <th>Minimum Fuel</th>
+    <th>Recommended Fuel</th>
+    <th>Formation Lap Fuel</th>
+  </tr>
+  <tr>
+    <td id="totaltime"></td>	
+    <td id="laprace_minfuel"></td>
+	<td id="laprace_recommendedfuel"></td>
+	<td id="laprace_formationlap"></td>
+  </tr>
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    var timedButton = document.getElementById("TimedButton");
+    var lapsButton = document.getElementById("LapsButton");
+
+    timedButton.addEventListener("click", function() {
+        // Activate this button
+        timedButton.classList.add("active-button");
+        // Deactivate the other button
+        lapsButton.classList.remove("active-button");
+    });
+
+    lapsButton.addEventListener("click", function() {
+        // Activate this button
+        lapsButton.classList.add("active-button");
+        // Deactivate the other button
+        timedButton.classList.remove("active-button");
+    });
+});
+
+// Function for Timed and Laps buttons.
+document.getElementById("TimedButton").addEventListener("click", function() {
+document.getElementById("timedrace").style.display = "block";
+document.getElementById("laprace").style.display = "none";
+});
+
+document.getElementById("LapsButton").addEventListener("click", function() {
+document.getElementById("laprace").style.display = "block";
+document.getElementById("timedrace").style.display = "none";
+});
+
+// Function to calculate fuel required for timed races.
+function calculatetimed() {
+  // Get the user inputs from the HTML fields.
+  let timedracelengthHour = parseFloat(document.getElementById("timedracelengthhour").value) || 0; // Race length in hours and minutes.
+  let timedracelengthMin = parseFloat(document.getElementById("timedracelengthmin").value) || 0;
+  // Extract lap times in minutes, seconds, and milliseconds; default to 0 if not provided.
+  let laptimeMM = parseInt(document.getElementById("laptimeMM").value) || 0; 
+  let laptimeSS = parseInt(document.getElementById("laptimeSS").value) || 0;
+  let laptimeMS = parseInt(document.getElementById("laptimeMS").value) || 0;
+  let fuelperlap = parseFloat(document.getElementById("fuelperlap").value); // Fuel consumed per lap.
+
+  // Validation checks for race length and fuel consumption per lap.
+  if (isNaN(timedracelengthMin) || timedracelengthMin <= 0) {
+    alert("Please enter a valid race length.");
+    return;
+  }
+  if (isNaN(fuelperlap) || fuelperlap <= 0) {
+    alert("Please enter a valid fuel per lap.");
+    return;
+  }
+
+  // Validation for lap time entries.
+  if ([laptimeMM, laptimeSS, laptimeMS].some(val => isNaN(val))) {
+    alert("Please enter a valid lap time in MM:SS:MS format.");
+    return;
+  }
+
+  // Convert lap time to total seconds.
+  let laptimeInSeconds = (laptimeMM * 60) + laptimeSS + (laptimeMS / 1000);
+
+  // Calculate total time in seconds.
+  let totalRaceTimeSeconds = (timedracelengthHour * 60 * 60) + (timedracelengthMin * 60);
+  
+  // Calculate total laps, minimum fuel required, recommended fuel and formation lap fuel.
+  // All values are rounded up for safety.
+  let totallaps = Math.ceil(totalRaceTimeSeconds / laptimeInSeconds);
+  let minfuel = Math.ceil(totallaps * fuelperlap);
+  let recommendedfuel = Math.ceil(minfuel + fuelperlap);
+  let formationlap = Math.ceil(minfuel + (fuelperlap * 2));
+
+  // Display the calculated results in the HTML elements.
+  document.getElementById("totallaps").innerHTML = totallaps;
+  document.getElementById("minfuel").innerHTML = minfuel;
+  document.getElementById("recommendedfuel").innerHTML = recommendedfuel;
+  document.getElementById("formationlap").innerHTML = formationlap;
+  
+  // Debug logs for developer's reference.
+  console.log("fuelperlap:", fuelperlap);
+  console.log("totallaps:", totallaps);
+  console.log("minfuel:", minfuel);
+  console.log("recommendedfuel:", recommendedfuel);
+  console.log("formationlap:", formationlap);
+}
+
+// Function to calculate fuel required for lap-based races.
+function calculatelap() {
+  // Get the user inputs from the HTML fields.
+  let lapracelength = parseInt(document.getElementById("lapracelength").value) || 0; // Total laps for the race.
+  // Extract lap times in minutes, seconds, and milliseconds; default to 0 if not provided.
+  let laptimeMM = parseInt(document.getElementById("laprace_laptimeMM").value) || 0;
+  let laptimeSS = parseInt(document.getElementById("laprace_laptimeSS").value) || 0;
+  let laptimeMS = parseInt(document.getElementById("laprace_laptimeMS").value) || 0;
+  let laprace_fuelperlap = parseFloat(document.getElementById("laprace_fuelperlap").value); // Fuel consumed per lap.
+
+  // Validation checks for race length and fuel consumption per lap.
+  if (isNaN(lapracelength) || lapracelength <= 0) {
+    alert("Please enter a valid race length.");
+    return;
+  }
+  if (isNaN(laprace_fuelperlap) || laprace_fuelperlap <= 0) {
+    alert("Please enter a valid fuel per lap.");
+    return;
+  }
+
+  // Validation for lap time entries.
+  if ([laptimeMM, laptimeSS, laptimeMS].some(val => isNaN(val))) {
+    alert("Please enter a valid lap time in MM:SS:MS format.");
+    return;
+  }
+
+  // Convert lap time to total seconds.
+  let laptimeInSeconds = (laptimeMM * 60) + laptimeSS + (laptimeMS / 1000);
+  
+  // Calculate the total duration of the race in seconds.
+  let totalTimeInSeconds = laptimeInSeconds * lapracelength;
+
+  // Convert the total duration to hour:minute:second format.
+  let hours = Math.floor(totalTimeInSeconds / 3600);
+  totalTimeInSeconds %= 3600;
+  let minutes = Math.floor(totalTimeInSeconds / 60);
+  let seconds = totalTimeInSeconds % 60;
+
+  // Calculate total laps, minimum fuel required, recommended fuel, and formation lap fuel.
+  // All values are rounded up for safety.
+  let totaltime = `${hours}h ${minutes}m ${seconds.toFixed(2)}s`;
+  let laprace_minfuel = Math.ceil(lapracelength * laprace_fuelperlap);
+  let laprace_recommendedfuel = Math.ceil(laprace_minfuel + laprace_fuelperlap);
+  let laprace_formationlap = Math.ceil(laprace_minfuel + (laprace_fuelperlap * 2));
+
+  // Display the calculated results in the HTML elements.
+  document.getElementById("totaltime").innerHTML = totaltime;
+  document.getElementById("laprace_minfuel").innerHTML = laprace_minfuel;
+  document.getElementById("laprace_recommendedfuel").innerHTML = laprace_recommendedfuel;
+  document.getElementById("laprace_formationlap").innerHTML = laprace_formationlap;
+  
+  // Debug logs for developer's reference.
+  console.log("laprace_fuelperlap:", laprace_fuelperlap);
+  console.log("totaltime:", totaltime);
+  console.log("laprace_minfuel:", laprace_minfuel);
+  console.log("laprace_recommendedfuel:", laprace_recommendedfuel);
+  console.log("laprace_formationlap:", laprace_formationlap);
+}
+</script>
+
+</body>
+</html>
