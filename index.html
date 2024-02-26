@@ -41,7 +41,7 @@
     <td class="input-group">
     <input type="number" id="timedracelengthhour" placeholder="Hours" min="1" class="mobile-input time-input"/>
     <span class="colon">:</span>
-    <input type="number" id="timedracelength" placeholder="Minutes" min="1" class="mobile-input time-input"/>
+    <input type="number" id="timedracelengthmin" placeholder="Minutes" min="1" class="mobile-input time-input"/>
    </td>
   </tr>
   <tr>
@@ -181,7 +181,8 @@ document.getElementById("timedrace").style.display = "none";
 // Function to calculate fuel required for timed races.
 function calculatetimed() {
   // Get the user inputs from the HTML fields.
-  let timedracelength = parseFloat(document.getElementById("timedracelength").value); // Race length in minutes.
+  let timedracelengthHour = parseFloat(document.getElementById("timedracelengthhour").value) || 0; // Race length in hours and minutes.
+  let timedracelengthMin = parseFloat(document.getElementById("timedracelengthmin").value) || 0;
   // Extract lap times in minutes, seconds, and milliseconds; default to 0 if not provided.
   let laptimeMM = parseInt(document.getElementById("laptimeMM").value) || 0; 
   let laptimeSS = parseInt(document.getElementById("laptimeSS").value) || 0;
@@ -189,7 +190,7 @@ function calculatetimed() {
   let fuelperlap = parseFloat(document.getElementById("fuelperlap").value); // Fuel consumed per lap.
 
   // Validation checks for race length and fuel consumption per lap.
-  if (isNaN(timedracelength) || timedracelength <= 0) {
+  if (isNaN(timedracelengthMin) || timedracelengthMin <= 0) {
     alert("Please enter a valid race length.");
     return;
   }
@@ -206,10 +207,13 @@ function calculatetimed() {
 
   // Convert lap time to total seconds.
   let laptimeInSeconds = (laptimeMM * 60) + laptimeSS + (laptimeMS / 1000);
+
+  // Calculate total time in seconds.
+  let totalRaceTimeSeconds = (timedracelengthHour * 60 * 60) + (timedracelengthMin * 60);
   
   // Calculate total laps, minimum fuel required, recommended fuel and formation lap fuel.
   // All values are rounded up for safety.
-  let totallaps = Math.ceil(timedracelength * 60 / laptimeInSeconds);
+  let totallaps = Math.ceil(totalRaceTimeSeconds / laptimeInSeconds);
   let minfuel = Math.ceil(totallaps * fuelperlap);
   let recommendedfuel = Math.ceil(minfuel + fuelperlap);
   let formationlap = Math.ceil(minfuel + (fuelperlap * 2));
