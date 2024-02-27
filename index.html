@@ -190,10 +190,12 @@ function calculatetimed() {
   let fuelperlap = parseFloat(document.getElementById("fuelperlap").value); // Fuel consumed per lap.
 
   // Validation checks for race length and fuel consumption per lap.
-  if (isNaN(timedracelengthMin) || timedracelengthMin <= 0) {
-    alert("Please enter a valid race length.");
-    return;
+  if ((isNaN(timedracelengthHour) || isNaN(timedracelengthMin)) || (timedracelengthHour < 0 || (timedracelengthHour === 0 && timedracelengthMin <= 0))) {
+  alert("Please enter valid race length values.");
+  return;
   }
+
+  // Validation for fuelperlap entry
   if (isNaN(fuelperlap) || fuelperlap <= 0) {
     alert("Please enter a valid fuel per lap.");
     return;
