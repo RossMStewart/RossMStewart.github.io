@@ -4,8 +4,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:royalblue;
+    background-color:rgb(91, 132, 255);
     text-align: center;
+    height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: royalblue;
+    padding: 10px;
+    z-index: 1000; /* Ensures the header stays on top of other elements */
 }
 
 h1 {
@@ -32,6 +43,9 @@ h2 {
     text-align: center;
     display: inline-block;
     width: 100%; /* Full width to accommodate smaller screens */
+    margin: auto;
+    padding: 10px;
+    max-width: 600px;
 }
 
 .user-input {
@@ -135,6 +149,12 @@ input {
     margin: 0 5px;
 }
 
+.footer {
+    width: 100%;
+    background-color: royalblue; /* Adjust color as needed */
+    padding: 10px;
+    text-align: center;
+}
 
 @media screen and (max-width: 600px) {
     .centered-paragraph, .user-input {
