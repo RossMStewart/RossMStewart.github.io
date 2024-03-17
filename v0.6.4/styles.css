@@ -45,6 +45,8 @@ h2 {
     display: inline-block;
     width: 100%; /* Full width to accommodate smaller screens */
     max-width: 600px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .user-input {
