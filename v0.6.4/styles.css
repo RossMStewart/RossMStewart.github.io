@@ -14,7 +14,7 @@ body {
     background-color: #00264d;
     text-align: center;
     padding: 20px;
-    position: static;
+    position: fixed;
     top: 0;
 }
 
@@ -153,7 +153,7 @@ input {
     background-color: #00264d; /* Adjust color as needed */
     padding: 10px;
     text-align: center;
-    position: static;
+    position: fixed;
     bottom: 0;
 }
 
