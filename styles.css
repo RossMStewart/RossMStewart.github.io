@@ -45,6 +45,8 @@ h2 {
     display: inline-block;
     width: 100%; /* Full width to accommodate smaller screens */
     max-width: 600px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .user-input {
@@ -62,7 +64,7 @@ h2 {
 
 .user-output {
     color: #fff;
-    background-color: #333333;
+    background-color: #00264d;
     font-weight: bold;
     padding: 8px;
     margin: auto;
