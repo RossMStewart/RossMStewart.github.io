@@ -16,6 +16,8 @@ body {
     text-align: center;
     padding: 20px;
     position: static;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -150,15 +152,14 @@ input {
     padding: 18px;
     text-align: center;
     position: static;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 600px) {
     .centered-paragraph, .user-input {
         width: 95%; /* Adjust for very small screens */
         font-size: 0.85em;
-    }
-    body {
-        padding-bottom: 20px;
     }
     .user-output {
         width: 90%; /* Adjust width for smaller screens */
