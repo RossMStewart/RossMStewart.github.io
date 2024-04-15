@@ -49,6 +49,15 @@ h2 {
     padding-bottom: 10px;
 }
 
+.centered-content p {
+    margin-bottom: 20px; /* Adds space below paragraphs only within .centered-content */
+}
+
+.centered-content .user-input {
+    margin-top: 20px; /* Adds space above user input tables only within .centered-content */
+}
+
+
 input::placeholder {
     color: #fff; /* Change to your desired placeholder text color */
     opacity: 1; /* Optional: ensures full opacity of placeholder color */
@@ -186,6 +195,14 @@ input {
         width: 95%; /* Adjust for very small screens */
         font-size: 0.85em;
     }
+
+    .centered-content p {
+        margin-bottom: 15px; /* Smaller bottom margin on smaller screens */
+    }
+    .centered-content .user-input {
+        margin-top: 15px; /* Smaller top margin on smaller screens */
+    }
+
     .user-output {
         width: 90%; /* Adjust width for smaller screens */
         font-size: 0.8em; /* Adjust font size for smaller screens */
@@ -193,10 +210,11 @@ input {
         margin: auto;
         padding-bottom: 10px;
     }
-    .user-output th,
-    .user-output td {
+
+    .user-output th, .user-output td {
         padding: 6px; /* Adjust padding for smaller screens */
     }
+    
     h1, h2 {
         font-size: 1.3em; /* Adjust font size for smaller screens */
     }
