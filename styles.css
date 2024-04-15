@@ -180,7 +180,7 @@ input {
     margin: 0 5px;
 }
 
-.footer {
+#footer {
     background-color: #00264d; /* Adjust color as needed */
     padding: 18px;
     text-align: center;
