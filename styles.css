@@ -109,7 +109,6 @@ input {
     margin-right: 5px;
     text-align: center;
     padding: 10px 15px; /* Increased padding for larger input boxes */
-    border-radius: 5px;
     font-size: 1em; /* Larger font size for better readability */
 }
 
