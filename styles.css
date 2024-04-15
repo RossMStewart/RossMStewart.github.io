@@ -83,7 +83,6 @@ input:-ms-input-placeholder {
 	color: #fff;
     background-color: #00264d;
     border: 1px solid #fff;
-	font-weight: bold;
 	padding: 10px; /* Adjust as needed */
     width: auto; /* Allows cell to adjust based on content size */
 	margin: auto;
@@ -97,7 +96,6 @@ input:-ms-input-placeholder {
 .user-output {
     color: #fff;
     background-color: #00264d;
-    font-weight: bold;
     padding: 8px;
     margin: auto;
     width: auto;
@@ -178,7 +176,6 @@ input {
 .colon {
     display: flex;
     align-items: center;
-    font-weight: bold;
     margin: 0 5px;
 }
 
@@ -207,7 +204,6 @@ input {
     .user-output {
         width: 90%; /* Adjust width for smaller screens */
         font-size: 0.8em; /* Adjust font size for smaller screens */
-        font-weight: bold;
         margin: auto;
         padding-bottom: 10px;
     }
