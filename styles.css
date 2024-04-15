@@ -72,6 +72,8 @@ input:-ms-input-placeholder {
 
 .user-input {
 	color: #fff;
+    background-color: #00264d;
+    border: 1px solid #fff;
 	font-weight: bold;
 	padding: 10px; /* Adjust as needed */
     width: auto; /* Allows cell to adjust based on content size */
