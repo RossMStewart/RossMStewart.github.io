@@ -169,6 +169,11 @@ input {
   transform: translateY(4px);
 }
 
+.mobile-button:hover {
+    color: #ffffff;
+    background-color: #333333;
+}
+
 .active-button {
     background-color: #333333;
     color: #ffffff;
