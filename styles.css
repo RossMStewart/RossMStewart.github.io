@@ -57,6 +57,13 @@ h2 {
     margin-top: 20px; /* Adds space above user input tables only within .centered-content */
 }
 
+#timedrace {
+    display: block;
+}
+
+#laprace {
+    display: none;
+}
 
 input::placeholder {
     color: #fff; /* Change to your desired placeholder text color */
